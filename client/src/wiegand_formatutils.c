@@ -160,7 +160,7 @@ static uint8_t get_length_from_header(wiegand_message_t *data) {
         // detect HID format b38 set
         if (data->Mid & 0xFFFFFFC0) { // 39-64 bits
             hfmt = data->Mid;
-            len = 32;
+            len = 31; // remove leading 1 (preamble) in 39-64 bits format
         } else { // detect card format 26-37 bits using "preamble" / "sentinel bit"
             PrintAndLogEx(DEBUG, "hid preamble detected");
 
